@@ -66,8 +66,6 @@ $('#translateButton').click(async () => {
     //đặt một text mới
     $('#translateButton').text('Đang dịch ...');
 
-
-
     // nhận giá trị json từ textarea
     const source_text = $('#source_text').val();
 
@@ -152,7 +150,7 @@ $('#translateButton').click(async () => {
             const textTrans = data.translateText
 
             // Kiểm tra và sửa lỗi trong văn bản dịch
-            var regex = /\[\s*(\d+)\]/g;
+            var regex = /\[\s*(\d+)\s*\]/g;
             const textTransFinal = textTrans.replace(regex, '[$1]');
 
             // console.log(valuesString)
