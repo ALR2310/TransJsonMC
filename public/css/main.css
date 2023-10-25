@@ -1,0 +1,16 @@
+/* Đặt thanh trượt mặt định */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    background: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 25px;
+    transition: all 0.5s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

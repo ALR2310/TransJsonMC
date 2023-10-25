@@ -1,0 +1,6 @@
+appId: com.alr.transjsonmc
+productName: TransJsonMC
+directories:
+  output: dist
+win:
+  target: nsis

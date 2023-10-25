@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./public/lib/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./public/lib/fontawesome-6.4.2/css/all.css">
+    <link rel="stylesheet" href="./public/lib/toast/toast.css">
+    <link rel="stylesheet" href="./public/css/main.css">
+    <title>Translate Json MC</title>
+</head>
+
+<body>
+    <div id="toast"></div>
+    <main>
+        <script src="./public/lib/jquery-3.7.1/all.js"></script>
+
+        <!-- giao diện phần dịch -->
+        <div class="container-xl container-fluid mt-5">
+            <h1 class="mb-4 text-center">Translate Json File MC</h1>
+
+            <div class="row">
+                <!-- cốt văn bản nguồn -->
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <!-- chọn ngôn ngữ nguồn -->
+                            <select class="form-select mb-2" id="source_lang">
+                                <option value="en">Tiếng Anh</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <!-- văn bản nguồn -->
+                        <textarea class="form-control" id="source_text" rows="15" spellcheck="false"
+                            placeholder="Paste văn bản cần dịch"></textarea>
+                        <span class="ms-2 text-secondary" id="countSource">0</span>
+                    </div>
+                </div>
+                <!-- cột văn bản dịch -->
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <!-- chọn ngôn ngữ dịch -->
+                            <select class="form-select mb-2" id="target_lang">
+                                <option value="vi">Tiếng Việt</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <!-- văn bản dịch -->
+                        <textarea class="form-control" id="trans_text" rows="15" spellcheck="false"
+                            placeholder="Kết quả dịch sẽ xuất hiện ở đây" readonly></textarea>
+                        <span class="ms-2 text-secondary" id="countTranslated">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- các tuỳ chọn dịch -->
+            <div class="row justify-content-end">
+                <!-- chọn loại api translate -->
+                <div class="col-auto mt-3">
+                    <div class="d-flex align-items-center" style="white-space: nowrap;">
+                        <label class="me-2" for="transAPIServer" title="số lượng cặp Json sẽ dịch">Server API:</label>
+                        <select class="form-select " id="transAPIServer">
+                            <option value="api1">Trans-API-1</option>
+                            <option value="api2">Trans-API-2</option>
+                            <option value="api3">Trans-API-3</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- chọn số cặp ojb -->
+                <div class="col-auto mt-3">
+                    <div class="d-flex align-items-center" style="white-space: nowrap;">
+                        <label class="me-2" for="countObjTrans" title="số lượng cặp Json sẽ dịch">Số cặp dịch:</label>
+                        <select class="form-select " id="countObjTrans">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20" selected="true">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- chọn loại dữ liệu -->
+                <div class="col-auto mt-3">
+                    <div class="d-flex align-items-center" style="white-space: nowrap;">
+                        <label class="me-2" for="typeTrans">Loại đầu vào:</label>
+                        <select class="form-select " id="typeTrans">
+                            <option value="json">Json</option>
+                        </select>
+                    </div>
+
+                </div>
+                <!-- Nút dịch -->
+                <div class="col-auto mt-3">
+                    <button id="translateButton" class="btn btn-primary">Bắt đầu dịch</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- giao diện phần so sánh dữ liệu -->
+        <div id="compareTranslated" class="container-xl container-fluid mt-5 d-none" style="margin-bottom: 200px">
+            <h1 class="text-center">Compare values Json</h1>
+
+            <div class="overflow-y-scroll" style="max-height: 600px;">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Khoá Json</th>
+                            <th scope="col">Giá trị gốc</th>
+                            <th scope="col">Giá trị đã dịch</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Thêm các dòng khác tại đây -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button id="btnPrint" type="button" class="btn btn-primary mt-4">In ra kết quả đã sửa</button>
+                <button id="btnCopy " type="button" class="btn btn-primary mt-4" onclick="copyTextTranslate()">Sao Chép
+                    kết quả</button>
+            </div>
+
+            <textarea id="outputTextTrans" class="form-control mt-4 d-none" rows="15" spellcheck="false"></textarea>
+        </div>
+    </main>
+
+    <script src="./public/lib/bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
+    <script src="./public/lib/toast/toast.js"></script>
+    <script src="./public/js/main.js"></script>
+</body>
+
+</html>
